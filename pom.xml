@@ -14,13 +14,16 @@
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
         <slf4j.version>1.7.36</slf4j.version>
+        <jsoup.version>1.14.3</jsoup.version>
+        <junit.version>4.13.2</junit.version>
+        <guava.version>31.0.1-jre</guava.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
-            <version>1.14.3</version>
+            <version>${jsoup.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -31,13 +34,13 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.2</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>31.0.1-jre</version>
+            <version>${guava.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
