@@ -12,7 +12,7 @@
 
         <sonar.organization>sigpwned</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.cpd.exclusions>src/main/java/com/sigpwned/opengraph4j/model/**</sonar.cpd.exclusions>
+        <sonar.exclusions>src/main/java/com/sigpwned/opengraph4j/model/**</sonar.exclusions>
 
         <slf4j.version>1.7.36</slf4j.version>
         <jsoup.version>1.14.3</jsoup.version>
