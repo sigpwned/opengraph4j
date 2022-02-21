@@ -5,6 +5,7 @@ import static java.util.Collections.unmodifiableList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.annotation.processing.Generated;
 import com.sigpwned.opengraph4j.util.Determiners;
 
 /**
@@ -84,6 +85,13 @@ public class OpenGraphMetadata {
    */
   private final List<OpenGraphAudio> audios;
 
+  @Generated("SparkTools")
+  private OpenGraphMetadata(Builder b) {
+    this(b.getType(), b.getTitle(), b.getUrl(), b.getDescription(), b.getDeterminer(),
+        b.getLocale(), b.getAlternateLocales(), b.getSiteName(), b.getImages(), b.getVideos(),
+        b.getAudios());
+  }
+
   public OpenGraphMetadata(String type, String title, String url, String description,
       String determiner, String locale, List<String> alternateLocales, String siteName,
       List<OpenGraphImage> images, List<OpenGraphVideo> videos, List<OpenGraphAudio> audios) {
@@ -107,12 +115,6 @@ public class OpenGraphMetadata {
     this.images = images != null && !images.isEmpty() ? unmodifiableList(images) : emptyList();
     this.videos = videos != null && !videos.isEmpty() ? unmodifiableList(videos) : emptyList();
     this.audios = audios != null && !audios.isEmpty() ? unmodifiableList(audios) : emptyList();
-  }
-
-  protected OpenGraphMetadata(Builder b) {
-    this(b.getType(), b.getTitle(), b.getUrl(), b.getDescription(), b.getDeterminer(),
-        b.getLocale(), b.getAlternateLocales(), b.getSiteName(), b.getImages(), b.getVideos(),
-        b.getAudios());
   }
 
   public String getType() {
@@ -160,12 +162,14 @@ public class OpenGraphMetadata {
   }
 
   @Override
+  @Generated("Eclipse")
   public int hashCode() {
     return Objects.hash(alternateLocales, audios, description, determiner, images, locale, siteName,
         title, type, url, videos);
   }
 
   @Override
+  @Generated("Eclipse")
   public boolean equals(Object obj) {
     if (this == obj)
       return true;
@@ -183,6 +187,7 @@ public class OpenGraphMetadata {
   }
 
   @Override
+  @Generated("Eclipse")
   public String toString() {
     return "OpenGraphMetadata [type=" + type + ", title=" + title + ", url=" + url
         + ", description=" + description + ", determiner=" + determiner + ", locale=" + locale
@@ -190,10 +195,12 @@ public class OpenGraphMetadata {
         + ", videos=" + videos + ", audios=" + audios + "]";
   }
 
+  @Generated("SparkTools")
   public Builder toBuilder() {
     return new Builder(this);
   }
 
+  @Generated("SparkTools")
   public static Builder builder(String type) {
     return new Builder(type);
   }
@@ -201,6 +208,7 @@ public class OpenGraphMetadata {
   /**
    * Builder to build {@link OpenGraphMetadata}.
    */
+  @Generated("SparkTools")
   public static class Builder {
     private final String type;
     private String title;

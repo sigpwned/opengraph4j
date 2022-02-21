@@ -2,6 +2,7 @@ package com.sigpwned.opengraph4j;
 
 import java.util.Objects;
 import java.util.Optional;
+import javax.annotation.processing.Generated;
 
 /**
  * An audio clip associated with an OpenGraph entity
@@ -28,6 +29,7 @@ public class OpenGraphAudio {
    */
   private final String type;
 
+  @Generated("SparkTools")
   private OpenGraphAudio(Builder builder) {
     this(builder.getUrl(), builder.getSecureUrl(), builder.getType());
   }
@@ -53,11 +55,13 @@ public class OpenGraphAudio {
   }
 
   @Override
+  @Generated("Eclipse")
   public int hashCode() {
     return Objects.hash(secureUrl, type, url);
   }
 
   @Override
+  @Generated("Eclipse")
   public boolean equals(Object obj) {
     if (this == obj)
       return true;
@@ -71,14 +75,17 @@ public class OpenGraphAudio {
   }
 
   @Override
+  @Generated("Eclipse")
   public String toString() {
     return "OpenGraphAudio [url=" + url + ", secureUrl=" + secureUrl + ", type=" + type + "]";
   }
 
+  @Generated("SparkTools")
   public Builder toBuilder() {
     return new Builder(this);
   }
 
+  @Generated("SparkTools")
   public static Builder builder(String url) {
     return new Builder(url);
   }
@@ -86,6 +93,7 @@ public class OpenGraphAudio {
   /**
    * Builder to build {@link OpenGraphAudio}.
    */
+  @Generated("SparkTools")
   public static final class Builder {
     private final String url;
     private String secureUrl;

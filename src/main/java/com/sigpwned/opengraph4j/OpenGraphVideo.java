@@ -3,6 +3,7 @@ package com.sigpwned.opengraph4j;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalInt;
+import javax.annotation.processing.Generated;
 
 /**
  * A video clip associated with an OpenGraph entity
@@ -46,6 +47,7 @@ public class OpenGraphVideo {
    */
   private final String alt;
 
+  @Generated("SparkTools")
   private OpenGraphVideo(Builder builder) {
     this(builder.getUrl(), builder.getSecureUrl(), builder.getType(), builder.getWidth(),
         builder.getHeight(), builder.getAlt());
@@ -88,11 +90,13 @@ public class OpenGraphVideo {
   }
 
   @Override
+  @Generated("Eclipse")
   public int hashCode() {
     return Objects.hash(alt, height, secureUrl, type, url, width);
   }
 
   @Override
+  @Generated("Eclipse")
   public boolean equals(Object obj) {
     if (this == obj)
       return true;
@@ -107,11 +111,13 @@ public class OpenGraphVideo {
   }
 
   @Override
+  @Generated("Eclipse")
   public String toString() {
     return "Image [url=" + url + ", secureUrl=" + secureUrl + ", type=" + type + ", width=" + width
         + ", height=" + height + ", alt=" + alt + "]";
   }
 
+  @Generated("SparkTools")
   public Builder toBuilder() {
     return new Builder(this);
   }
@@ -122,6 +128,7 @@ public class OpenGraphVideo {
    * @param url The url to initialize the builder with
    * @return created builder
    */
+  @Generated("SparkTools")
   public static Builder builder(String url) {
     return new Builder(url);
   }
@@ -129,6 +136,7 @@ public class OpenGraphVideo {
   /**
    * Builder to build {@link OpenGraphVideo}.
    */
+  @Generated("SparkTools")
   public static final class Builder {
     private final String url;
     private String secureUrl;

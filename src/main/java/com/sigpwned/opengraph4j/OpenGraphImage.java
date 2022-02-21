@@ -3,6 +3,7 @@ package com.sigpwned.opengraph4j;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalInt;
+import javax.annotation.processing.Generated;
 
 /**
  * An image associated with an OpenGraph entity
@@ -46,6 +47,7 @@ public class OpenGraphImage {
    */
   private final String alt;
 
+  @Generated("SparkTools")
   private OpenGraphImage(Builder builder) {
     this(builder.getUrl(), builder.getSecureUrl(), builder.getType(), builder.getWidth(),
         builder.getHeight(), builder.getAlt());
@@ -88,11 +90,13 @@ public class OpenGraphImage {
   }
 
   @Override
+  @Generated("Eclipse")
   public int hashCode() {
     return Objects.hash(alt, height, secureUrl, type, url, width);
   }
 
   @Override
+  @Generated("Eclipse")
   public boolean equals(Object obj) {
     if (this == obj)
       return true;
@@ -107,15 +111,18 @@ public class OpenGraphImage {
   }
 
   @Override
+  @Generated("Eclipse")
   public String toString() {
     return "Image [url=" + url + ", secureUrl=" + secureUrl + ", type=" + type + ", width=" + width
         + ", height=" + height + ", alt=" + alt + "]";
   }
 
+  @Generated("SparkTools")
   public Builder toBuilder() {
     return new Builder(this);
   }
 
+  @Generated("SparkTools")
   public static Builder builder(String url) {
     return new Builder(url);
   }
@@ -123,6 +130,7 @@ public class OpenGraphImage {
   /**
    * Builder to build {@link OpenGraphImage}.
    */
+  @Generated("SparkTools")
   public static final class Builder {
     private final String url;
     private String secureUrl;
