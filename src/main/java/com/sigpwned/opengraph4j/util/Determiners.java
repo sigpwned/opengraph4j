@@ -1,5 +1,10 @@
 package com.sigpwned.opengraph4j.util;
 
+/**
+ * Determiners enum values
+ * 
+ * @see https://ogp.me/#aidoptionalhrefoptionaloptionalmetadataa
+ */
 public final class Determiners {
   private Determiners() {}
   

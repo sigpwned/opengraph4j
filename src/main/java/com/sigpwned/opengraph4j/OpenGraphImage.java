@@ -4,6 +4,11 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalInt;
 
+/**
+ * An image associated with an OpenGraph entity
+ * 
+ * @see https://ogp.me/#aidstructuredhrefstructuredstructuredpropertiesa
+ */
 public class OpenGraphImage {
   public static OpenGraphImage of(String url, String secureUrl, String type, Integer width,
       Integer height, String alt) {

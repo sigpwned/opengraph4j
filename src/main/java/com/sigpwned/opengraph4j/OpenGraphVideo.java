@@ -4,6 +4,11 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalInt;
 
+/**
+ * A video clip associated with an OpenGraph entity
+ * 
+ * @see https://ogp.me/#aidstructuredhrefstructuredstructuredpropertiesa
+ */
 public class OpenGraphVideo {
   public static OpenGraphVideo of(String url, String secureUrl, String type, Integer width,
       Integer height, String alt) {
@@ -137,7 +142,7 @@ public class OpenGraphVideo {
     private String alt;
 
     public Builder(String url) {
-      if(url == null)
+      if (url == null)
         throw new NullPointerException();
       this.url = url;
     }

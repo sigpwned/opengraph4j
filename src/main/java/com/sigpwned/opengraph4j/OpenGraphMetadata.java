@@ -8,7 +8,11 @@ import java.util.Objects;
 import com.sigpwned.opengraph4j.util.Determiners;
 
 /**
- * @see ogp.me
+ * The main OpenGraph metadata class. It models all required and optional metadata, but does not
+ * model all OpenGraph metadata types. While these "main" metadata are reasonably well-documented
+ * and ubiquitous across the web, the more complex types are not in practice.
+ * 
+ * @see https://ogp.me/
  */
 public class OpenGraphMetadata {
   public static OpenGraphMetadata of(String type, String title, String url, String description,
@@ -85,11 +89,11 @@ public class OpenGraphMetadata {
       List<OpenGraphImage> images, List<OpenGraphVideo> videos, List<OpenGraphAudio> audios) {
     if (type == null)
       throw new IllegalArgumentException("no type");
-    
+
     // NOTE: The spec requires title. We do not.
     // NOTE: The spec requires at least one image. We do not.
     // NOTE: The spec requires a url. We do not.
-    
+
     this.type = type;
     this.title = title;
     this.url = url;

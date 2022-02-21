@@ -3,6 +3,11 @@ package com.sigpwned.opengraph4j;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * An audio clip associated with an OpenGraph entity
+ * 
+ * @see https://ogp.me/#aidstructuredhrefstructuredstructuredpropertiesa
+ */
 public class OpenGraphAudio {
   public static OpenGraphAudio of(String url, String secureUrl, String type) {
     return new OpenGraphAudio(url, secureUrl, type);

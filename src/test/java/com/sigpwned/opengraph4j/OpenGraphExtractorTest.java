@@ -5,18 +5,17 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
+import java.util.NoSuchElementException;
 import org.junit.Test;
 import com.google.common.io.Resources;
+import com.sigpwned.opengraph4j.util.OpenGraph;
 
 public class OpenGraphExtractorTest {
   @Test
   public void exampleVergeComTest() throws IOException {
-    Document doc = Jsoup.parse(Resources.toString(Resources.getResource("example-verge-com.html"),
-        StandardCharsets.UTF_8));
-
-    OpenGraphMetadata extracted = new OpenGraphExtractor().extract(doc).get();
+    OpenGraphMetadata extracted = OpenGraph.extract(
+        Resources.toString(Resources.getResource("example-verge-com.html"), StandardCharsets.UTF_8))
+        .get();
 
     assertThat(extracted, is(OpenGraphMetadata.of("article", // type
         "Read exactly how Microsoft’s $68.7 billion deal for Activision Blizzard came together", // title
@@ -39,10 +38,10 @@ public class OpenGraphExtractorTest {
 
   @Test
   public void exampleImdbComTest() throws IOException {
-    Document doc = Jsoup.parse(
-        Resources.toString(Resources.getResource("example-imdb-com.html"), StandardCharsets.UTF_8));
+    OpenGraphMetadata extracted = OpenGraph.extract(
+        Resources.toString(Resources.getResource("example-imdb-com.html"), StandardCharsets.UTF_8))
+        .get();
 
-    OpenGraphMetadata extracted = new OpenGraphExtractor().extract(doc).get();
 
     assertThat(extracted, is(OpenGraphMetadata.of("video.movie", // type
         "The Rock (1996) - IMDb", // title
@@ -61,5 +60,11 @@ public class OpenGraphExtractorTest {
             null)), // alt
         List.of(), // videos
         List.of()))); // audios
+  }
+
+  @Test(expected = NoSuchElementException.class)
+  public void exampleNeversslComTest() throws IOException {
+    OpenGraph.extract(Resources.toString(Resources.getResource("example-neverssl-com.html"),
+        StandardCharsets.UTF_8)).get();
   }
 }

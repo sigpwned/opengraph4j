@@ -11,6 +11,10 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Extracts {@link OpenGraphMetadata} from a parsed HTML document. This object is not thread-safe,
+ * but can be reused.
+ */
 public class OpenGraphExtractor {
   private static final Logger LOGGER = LoggerFactory.getLogger(OpenGraphExtractor.class);
 
@@ -37,7 +41,7 @@ public class OpenGraphExtractor {
         String property = element.attr("property").toLowerCase();
         String content = element.attr("content");
 
-        handle(property, content);
+        metadata(property, content);
       }
 
       if (imageBuilder != null)
@@ -88,7 +92,7 @@ public class OpenGraphExtractor {
 
   public static final String OG_IMAGE_HEIGHT_PROPERTY_NAME = "og:image:height";
 
-  private void handle(String property, String content) {
+  private void metadata(String property, String content) {
     switch (property) {
       case OG_TYPE_PROPERTY_NAME:
         // Skip. We've already handled it above.
