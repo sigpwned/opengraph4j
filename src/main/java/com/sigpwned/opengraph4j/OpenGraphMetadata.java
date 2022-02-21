@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
+import com.sigpwned.opengraph4j.annotations.GeneratedCode;
 import com.sigpwned.opengraph4j.util.Determiners;
 
 /**
@@ -85,6 +86,7 @@ public class OpenGraphMetadata {
    */
   private final List<OpenGraphAudio> audios;
 
+  @GeneratedCode
   @Generated("SparkTools")
   private OpenGraphMetadata(Builder b) {
     this(b.getType(), b.getTitle(), b.getUrl(), b.getDescription(), b.getDeterminer(),
@@ -162,6 +164,7 @@ public class OpenGraphMetadata {
   }
 
   @Override
+  @GeneratedCode
   @Generated("Eclipse")
   public int hashCode() {
     return Objects.hash(alternateLocales, audios, description, determiner, images, locale, siteName,
@@ -169,6 +172,7 @@ public class OpenGraphMetadata {
   }
 
   @Override
+  @GeneratedCode
   @Generated("Eclipse")
   public boolean equals(Object obj) {
     if (this == obj)
@@ -187,6 +191,7 @@ public class OpenGraphMetadata {
   }
 
   @Override
+  @GeneratedCode
   @Generated("Eclipse")
   public String toString() {
     return "OpenGraphMetadata [type=" + type + ", title=" + title + ", url=" + url
@@ -195,11 +200,13 @@ public class OpenGraphMetadata {
         + ", videos=" + videos + ", audios=" + audios + "]";
   }
 
+  @GeneratedCode
   @Generated("SparkTools")
   public Builder toBuilder() {
     return new Builder(this);
   }
 
+  @GeneratedCode
   @Generated("SparkTools")
   public static Builder builder(String type) {
     return new Builder(type);
@@ -208,6 +215,7 @@ public class OpenGraphMetadata {
   /**
    * Builder to build {@link OpenGraphMetadata}.
    */
+  @GeneratedCode
   @Generated("SparkTools")
   public static class Builder {
     private final String type;
