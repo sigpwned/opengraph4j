@@ -41,10 +41,19 @@ public class OpenGraphVideo {
    */
   private final String alt;
 
+  private OpenGraphVideo(Builder builder) {
+    this.url = builder.url;
+    this.secureUrl = builder.secureUrl;
+    this.type = builder.type;
+    this.width = builder.width;
+    this.height = builder.height;
+    this.alt = builder.alt;
+  }
+
   public OpenGraphVideo(String url, String secureUrl, String type, Integer width, Integer height,
       String alt) {
     if (url == null)
-      throw new NullPointerException();
+      throw new IllegalArgumentException("no url");
     this.url = url;
     this.secureUrl = secureUrl;
     this.type = type;
@@ -100,5 +109,187 @@ public class OpenGraphVideo {
   public String toString() {
     return "Image [url=" + url + ", secureUrl=" + secureUrl + ", type=" + type + ", width=" + width
         + ", height=" + height + ", alt=" + alt + "]";
+  }
+
+  public Builder toBuilder() {
+    return new Builder(this);
+  }
+
+  /**
+   * Creates a builder to build {@link OpenGraphVideo} and initialize it with the given values.
+   * 
+   * @param url The url to initialize the builder with
+   * @return created builder
+   */
+  public static Builder builder(String url) {
+    return new Builder(url);
+  }
+
+  /**
+   * Builder to build {@link OpenGraphVideo}.
+   */
+  public static final class Builder {
+    private final String url;
+    private String secureUrl;
+    private String type;
+    private Integer width;
+    private Integer height;
+    private String alt;
+
+    public Builder(String url) {
+      if(url == null)
+        throw new NullPointerException();
+      this.url = url;
+    }
+
+    private Builder(OpenGraphVideo instance) {
+      this.url = instance.url;
+      this.secureUrl = instance.secureUrl;
+      this.type = instance.type;
+      this.width = instance.width;
+      this.height = instance.height;
+      this.alt = instance.alt;
+    }
+
+    /**
+     * @return the url
+     */
+    public String getUrl() {
+      return url;
+    }
+
+    /**
+     * @return the secureUrl
+     */
+    public String getSecureUrl() {
+      return secureUrl;
+    }
+
+    /**
+     * @param secureUrl the secureUrl to set
+     */
+    public void setSecureUrl(String secureUrl) {
+      this.secureUrl = secureUrl;
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+      return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+      this.type = type;
+    }
+
+    /**
+     * @return the width
+     */
+    public Integer getWidth() {
+      return width;
+    }
+
+    /**
+     * @param width the width to set
+     */
+    public void setWidth(Integer width) {
+      this.width = width;
+    }
+
+    /**
+     * @return the height
+     */
+    public Integer getHeight() {
+      return height;
+    }
+
+    /**
+     * @param height the height to set
+     */
+    public void setHeight(Integer height) {
+      this.height = height;
+    }
+
+    /**
+     * @return the alt
+     */
+    public String getAlt() {
+      return alt;
+    }
+
+    /**
+     * @param alt the alt to set
+     */
+    public void setAlt(String alt) {
+      this.alt = alt;
+    }
+
+    /**
+     * Builder method for secureUrl parameter.
+     * 
+     * @param secureUrl field to set
+     * @return builder
+     */
+    public Builder withSecureUrl(String secureUrl) {
+      setSecureUrl(secureUrl);
+      return this;
+    }
+
+    /**
+     * Builder method for type parameter.
+     * 
+     * @param type field to set
+     * @return builder
+     */
+    public Builder withType(String type) {
+      setType(type);
+      return this;
+    }
+
+    /**
+     * Builder method for width parameter.
+     * 
+     * @param width field to set
+     * @return builder
+     */
+    public Builder withWidth(Integer width) {
+      setWidth(width);
+      return this;
+    }
+
+    /**
+     * Builder method for height parameter.
+     * 
+     * @param height field to set
+     * @return builder
+     */
+    public Builder withHeight(Integer height) {
+      setHeight(height);
+      return this;
+    }
+
+    /**
+     * Builder method for alt parameter.
+     * 
+     * @param alt field to set
+     * @return builder
+     */
+    public Builder withAlt(String alt) {
+      setAlt(alt);
+      return this;
+    }
+
+    /**
+     * Builder method of the builder.
+     * 
+     * @return built class
+     */
+    public OpenGraphVideo build() {
+      return new OpenGraphVideo(this);
+    }
   }
 }

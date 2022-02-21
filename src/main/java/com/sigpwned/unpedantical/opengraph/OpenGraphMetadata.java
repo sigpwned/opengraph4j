@@ -2,10 +2,14 @@ package com.sigpwned.unpedantical.opengraph;
 
 import static java.util.Collections.emptyList;
 import static java.util.Collections.unmodifiableList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import com.sigpwned.unpedantical.opengraph.util.Determiners;
 
+/**
+ * @see ogp.me
+ */
 public abstract class OpenGraphMetadata {
   /**
    * The type of your object, e.g., "video.movie". Depending on the type you specify, other
@@ -72,6 +76,14 @@ public abstract class OpenGraphMetadata {
   protected OpenGraphMetadata(String type, String title, String url, String description,
       String determiner, String locale, List<String> alternateLocales, String siteName,
       List<OpenGraphImage> images, List<OpenGraphVideo> videos, List<OpenGraphAudio> audios) {
+    if (type == null)
+      throw new IllegalArgumentException("no type");
+    if (title == null)
+      throw new IllegalArgumentException("no title");
+    if (images == null || images.isEmpty())
+      throw new IllegalArgumentException("no image");
+    if (url == null)
+      throw new IllegalArgumentException("no url");
     this.type = type;
     this.title = title;
     this.url = url;
@@ -160,5 +172,312 @@ public abstract class OpenGraphMetadata {
         + ", description=" + description + ", determiner=" + determiner + ", locale=" + locale
         + ", alternateLocales=" + alternateLocales + ", siteName=" + siteName + ", images=" + images
         + ", videos=" + videos + ", audios=" + audios + "]";
+  }
+
+  /**
+   * Builder to build {@link OpenGraphMetadata}.
+   */
+  public static class Builder {
+    private String type;
+    private String title;
+    private String url;
+    private String description;
+    private String determiner;
+    private String locale;
+    private List<String> alternateLocales = new ArrayList<>();
+    private String siteName;
+    private List<OpenGraphImage> images = new ArrayList<>();
+    private List<OpenGraphVideo> videos = new ArrayList<>();
+    private List<OpenGraphAudio> audios = new ArrayList<>();
+
+    public Builder(String type) {
+      if (type == null)
+        throw new NullPointerException();
+      this.type = type;
+    }
+    
+    protected Builder(OpenGraphMetadata instance) {
+      type = instance.type;
+      title = instance.title;
+      url = instance.url;
+      description = instance.description;
+      determiner = instance.determiner;
+      locale = instance.locale;
+      alternateLocales = instance.alternateLocales;
+      siteName = instance.siteName;
+      images = instance.images;
+      videos = instance.videos;
+      audios = instance.audios;
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+      return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+      this.type = type;
+    }
+
+    /**
+     * @return the title
+     */
+    public String getTitle() {
+      return title;
+    }
+
+    /**
+     * @param title the title to set
+     */
+    public void setTitle(String title) {
+      this.title = title;
+    }
+
+    /**
+     * @return the url
+     */
+    public String getUrl() {
+      return url;
+    }
+
+    /**
+     * @param url the url to set
+     */
+    public void setUrl(String url) {
+      this.url = url;
+    }
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+      return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+      this.description = description;
+    }
+
+    /**
+     * @return the determiner
+     */
+    public String getDeterminer() {
+      return determiner;
+    }
+
+    /**
+     * @param determiner the determiner to set
+     */
+    public void setDeterminer(String determiner) {
+      this.determiner = determiner;
+    }
+
+    /**
+     * @return the locale
+     */
+    public String getLocale() {
+      return locale;
+    }
+
+    /**
+     * @param locale the locale to set
+     */
+    public void setLocale(String locale) {
+      this.locale = locale;
+    }
+
+    /**
+     * @return the alternateLocales
+     */
+    public List<String> getAlternateLocales() {
+      return alternateLocales;
+    }
+
+    /**
+     * @param alternateLocales the alternateLocales to set
+     */
+    public void setAlternateLocales(List<String> alternateLocales) {
+      this.alternateLocales = alternateLocales;
+    }
+
+    /**
+     * @return the siteName
+     */
+    public String getSiteName() {
+      return siteName;
+    }
+
+    /**
+     * @param siteName the siteName to set
+     */
+    public void setSiteName(String siteName) {
+      this.siteName = siteName;
+    }
+
+    /**
+     * @return the images
+     */
+    public List<OpenGraphImage> getImages() {
+      return images;
+    }
+
+    /**
+     * @param images the images to set
+     */
+    public void setImages(List<OpenGraphImage> images) {
+      if (images == null)
+        throw new NullPointerException();
+      this.images = images;
+    }
+
+    /**
+     * @return the videos
+     */
+    public List<OpenGraphVideo> getVideos() {
+      return videos;
+    }
+
+    /**
+     * @param videos the videos to set
+     */
+    public void setVideos(List<OpenGraphVideo> videos) {
+      if (videos == null)
+        throw new NullPointerException();
+      this.videos = videos;
+    }
+
+    /**
+     * @return the audios
+     */
+    public List<OpenGraphAudio> getAudios() {
+      return audios;
+    }
+
+    /**
+     * @param audios the audios to set
+     */
+    public void setAudios(List<OpenGraphAudio> audios) {
+      if (audios == null)
+        throw new NullPointerException();
+      this.audios = audios;
+    }
+
+    /**
+     * Builder method for title parameter.
+     * 
+     * @param title field to set
+     * @return builder
+     */
+    public Builder withTitle(String title) {
+      setTitle(title);
+      return this;
+    }
+
+    /**
+     * Builder method for url parameter.
+     * 
+     * @param url field to set
+     * @return builder
+     */
+    public Builder withUrl(String url) {
+      setUrl(url);
+      return this;
+    }
+
+    /**
+     * Builder method for description parameter.
+     * 
+     * @param description field to set
+     * @return builder
+     */
+    public Builder withDescription(String description) {
+      setDescription(description);
+      return this;
+    }
+
+    /**
+     * Builder method for determiner parameter.
+     * 
+     * @param determiner field to set
+     * @return builder
+     */
+    public Builder withDeterminer(String determiner) {
+      setDeterminer(determiner);
+      return this;
+    }
+
+    /**
+     * Builder method for locale parameter.
+     * 
+     * @param locale field to set
+     * @return builder
+     */
+    public Builder withLocale(String locale) {
+      setLocale(locale);
+      return this;
+    }
+
+    /**
+     * Builder method for alternateLocales parameter.
+     * 
+     * @param alternateLocales field to set
+     * @return builder
+     */
+    public Builder withAlternateLocales(List<String> alternateLocales) {
+      setAlternateLocales(alternateLocales);
+      return this;
+    }
+
+    /**
+     * Builder method for siteName parameter.
+     * 
+     * @param siteName field to set
+     * @return builder
+     */
+    public Builder withSiteName(String siteName) {
+      setSiteName(siteName);
+      return this;
+    }
+
+    /**
+     * Builder method for images parameter.
+     * 
+     * @param images field to set
+     * @return builder
+     */
+    public Builder withImages(List<OpenGraphImage> images) {
+      setImages(images);
+      return this;
+    }
+
+    /**
+     * Builder method for videos parameter.
+     * 
+     * @param videos field to set
+     * @return builder
+     */
+    public Builder withVideos(List<OpenGraphVideo> videos) {
+      setVideos(videos);
+      return this;
+    }
+
+    /**
+     * Builder method for audios parameter.
+     * 
+     * @param audios field to set
+     * @return builder
+     */
+    public Builder withAudios(List<OpenGraphAudio> audios) {
+      setAudios(audios);
+      return this;
+    }
   }
 }

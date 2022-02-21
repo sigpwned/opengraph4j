@@ -7,10 +7,18 @@ import com.sigpwned.unpedantical.opengraph.OpenGraphMetadata;
 import com.sigpwned.unpedantical.opengraph.OpenGraphVideo;
 
 public class WebsiteOpenGraphMetadata extends OpenGraphMetadata {
-  public WebsiteOpenGraphMetadata(String type, String title, String url, String description,
-      String determiner, String locale, List<String> alternateLocales, String siteName,
-      List<OpenGraphImage> images, List<OpenGraphVideo> videos, List<OpenGraphAudio> audios) {
-    super(type, title, url, description, determiner, locale, alternateLocales, siteName, images,
+  public static final String TYPE = "website";
+
+  private WebsiteOpenGraphMetadata(Builder builder) {
+    super(builder.getType(), builder.getTitle(), builder.getUrl(), builder.getDescription(),
+        builder.getDeterminer(), builder.getLocale(), builder.getAlternateLocales(),
+        builder.getSiteName(), builder.getImages(), builder.getVideos(), builder.getAudios());
+  }
+
+  public WebsiteOpenGraphMetadata(String title, String url, String description, String determiner,
+      String locale, List<String> alternateLocales, String siteName, List<OpenGraphImage> images,
+      List<OpenGraphVideo> videos, List<OpenGraphAudio> audios) {
+    super(TYPE, title, url, description, determiner, locale, alternateLocales, siteName, images,
         videos, audios);
   }
 
@@ -37,5 +45,35 @@ public class WebsiteOpenGraphMetadata extends OpenGraphMetadata {
         + getDeterminer() + ", getLocale()=" + getLocale() + ", getAlternateLocales()="
         + getAlternateLocales() + ", getSiteName()=" + getSiteName() + ", getImages()="
         + getImages() + ", getVideos()=" + getVideos() + ", getAudios()=" + getAudios() + "]";
+  }
+  
+  public Builder toBuilder() {
+    return new Builder(this);
+  }
+  
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+   * Builder to build {@link WebsiteOpenGraphMetadata}.
+   */
+  public static final class Builder extends OpenGraphMetadata.Builder {
+    public Builder() {
+      super(TYPE);
+    }
+    
+    private Builder(WebsiteOpenGraphMetadata instance) {
+      super(instance);
+    }
+
+    /**
+     * Builder method of the builder.
+     * 
+     * @return built class
+     */
+    public WebsiteOpenGraphMetadata build() {
+      return new WebsiteOpenGraphMetadata(this);
+    }
   }
 }
