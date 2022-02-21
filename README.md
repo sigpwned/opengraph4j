@@ -1,4 +1,4 @@
-# OPENGRAPH4J [![tests](https://github.com/sigpwned/opengraph4j/actions/workflows/tests.yml/badge.svg)](https://github.com/sigpwned/opengraph4j/actions/workflows/tests.yml) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sigpwned_opengraph4j&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=sigpwned_opengraph4j)
+# OPENGRAPH4J [![tests](https://github.com/sigpwned/opengraph4j/actions/workflows/tests.yml/badge.svg)](https://github.com/sigpwned/opengraph4j/actions/workflows/tests.yml) [![CodeQL](https://github.com/sigpwned/opengraph4j/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/sigpwned/opengraph4j/actions/workflows/codeql-analysis.yml) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sigpwned_opengraph4j&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=sigpwned_opengraph4j)
 
 opengraph4j is an implementation of [the OpenGraph standard](https://ogp.me/) for Java.
 
