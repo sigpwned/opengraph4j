@@ -29,9 +29,7 @@ public class OpenGraphAudio {
   private final String type;
 
   private OpenGraphAudio(Builder builder) {
-    this.url = builder.url;
-    this.secureUrl = builder.secureUrl;
-    this.type = builder.type;
+    this(builder.getUrl(), builder.getSecureUrl(), builder.getType());
   }
 
   public OpenGraphAudio(String url, String secureUrl, String type) {

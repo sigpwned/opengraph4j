@@ -47,12 +47,8 @@ public class OpenGraphVideo {
   private final String alt;
 
   private OpenGraphVideo(Builder builder) {
-    this.url = builder.url;
-    this.secureUrl = builder.secureUrl;
-    this.type = builder.type;
-    this.width = builder.width;
-    this.height = builder.height;
-    this.alt = builder.alt;
+    this(builder.getUrl(), builder.getSecureUrl(), builder.getType(), builder.getWidth(),
+        builder.getHeight(), builder.getAlt());
   }
 
   public OpenGraphVideo(String url, String secureUrl, String type, Integer width, Integer height,

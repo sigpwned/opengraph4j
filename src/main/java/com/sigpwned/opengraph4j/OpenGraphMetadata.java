@@ -498,12 +498,6 @@ public class OpenGraphMetadata {
     }
 
     public OpenGraphMetadata build() {
-      // return new OpenGraphMetadata(this);
-      /*
-       * String type, String title, String url, String description, String determiner, String
-       * locale, List<String> alternateLocales, String siteName, List<OpenGraphImage> images,
-       * List<OpenGraphVideo> videos, List<OpenGraphAudio> audios
-       */
       return new OpenGraphMetadata(this);
     }
   }

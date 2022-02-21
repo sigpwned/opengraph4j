@@ -9,7 +9,9 @@ import com.sigpwned.opengraph4j.OpenGraphMetadata;
 /**
  * OpenGraph helper methods
  */
-public class OpenGraph {
+public final class OpenGraph {
+  private OpenGraph() {}
+  
   /**
    * Extract OpenGraph metadata from an HTML document
    */
