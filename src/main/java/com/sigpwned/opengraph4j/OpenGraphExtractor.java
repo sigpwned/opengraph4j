@@ -10,6 +10,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.sigpwned.opengraph4j.model.OpenGraphAudio;
+import com.sigpwned.opengraph4j.model.OpenGraphImage;
+import com.sigpwned.opengraph4j.model.OpenGraphMetadata;
+import com.sigpwned.opengraph4j.model.OpenGraphVideo;
 
 /**
  * Extracts {@link OpenGraphMetadata} from a parsed HTML document. This object is not thread-safe,

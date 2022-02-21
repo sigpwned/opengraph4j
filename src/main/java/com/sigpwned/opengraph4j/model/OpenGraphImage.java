@@ -1,10 +1,9 @@
-package com.sigpwned.opengraph4j;
+package com.sigpwned.opengraph4j.model;
 
 import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalInt;
 import javax.annotation.processing.Generated;
-import com.sigpwned.opengraph4j.annotations.GeneratedCode;
 
 /**
  * An image associated with an OpenGraph entity
@@ -48,7 +47,6 @@ public class OpenGraphImage {
    */
   private final String alt;
 
-  @GeneratedCode
   @Generated("SparkTools")
   private OpenGraphImage(Builder builder) {
     this(builder.getUrl(), builder.getSecureUrl(), builder.getType(), builder.getWidth(),
@@ -92,14 +90,12 @@ public class OpenGraphImage {
   }
 
   @Override
-  @GeneratedCode
   @Generated("Eclipse")
   public int hashCode() {
     return Objects.hash(alt, height, secureUrl, type, url, width);
   }
 
   @Override
-  @GeneratedCode
   @Generated("Eclipse")
   public boolean equals(Object obj) {
     if (this == obj)
@@ -115,20 +111,17 @@ public class OpenGraphImage {
   }
 
   @Override
-  @GeneratedCode
   @Generated("Eclipse")
   public String toString() {
     return "Image [url=" + url + ", secureUrl=" + secureUrl + ", type=" + type + ", width=" + width
         + ", height=" + height + ", alt=" + alt + "]";
   }
 
-  @GeneratedCode
   @Generated("SparkTools")
   public Builder toBuilder() {
     return new Builder(this);
   }
 
-  @GeneratedCode
   @Generated("SparkTools")
   public static Builder builder(String url) {
     return new Builder(url);
@@ -137,7 +130,6 @@ public class OpenGraphImage {
   /**
    * Builder to build {@link OpenGraphImage}.
    */
-  @GeneratedCode
   @Generated("SparkTools")
   public static final class Builder {
     private final String url;

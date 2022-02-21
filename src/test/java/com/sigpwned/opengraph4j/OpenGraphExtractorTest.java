@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import org.junit.Test;
 import com.google.common.io.Resources;
+import com.sigpwned.opengraph4j.model.OpenGraphImage;
+import com.sigpwned.opengraph4j.model.OpenGraphMetadata;
 import com.sigpwned.opengraph4j.util.OpenGraph;
 
 public class OpenGraphExtractorTest {

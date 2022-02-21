@@ -4,7 +4,7 @@ import java.util.Optional;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import com.sigpwned.opengraph4j.OpenGraphExtractor;
-import com.sigpwned.opengraph4j.OpenGraphMetadata;
+import com.sigpwned.opengraph4j.model.OpenGraphMetadata;
 
 /**
  * OpenGraph helper methods
