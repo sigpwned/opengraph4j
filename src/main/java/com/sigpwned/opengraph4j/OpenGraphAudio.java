@@ -1,4 +1,4 @@
-package com.sigpwned.unpedantical.opengraph;
+package com.sigpwned.opengraph4j;
 
 import java.util.Objects;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.sigpwned.unpedantical.opengraph.util;
+package com.sigpwned.opengraph4j.util;
 
 public final class Determiners {
   private Determiners() {}

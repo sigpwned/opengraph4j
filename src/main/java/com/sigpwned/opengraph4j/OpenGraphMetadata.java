@@ -1,16 +1,23 @@
-package com.sigpwned.unpedantical.opengraph;
+package com.sigpwned.opengraph4j;
 
 import static java.util.Collections.emptyList;
 import static java.util.Collections.unmodifiableList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import com.sigpwned.unpedantical.opengraph.util.Determiners;
+import com.sigpwned.opengraph4j.util.Determiners;
 
 /**
  * @see ogp.me
  */
-public abstract class OpenGraphMetadata {
+public class OpenGraphMetadata {
+  public static OpenGraphMetadata of(String type, String title, String url, String description,
+      String determiner, String locale, List<String> alternateLocales, String siteName,
+      List<OpenGraphImage> images, List<OpenGraphVideo> videos, List<OpenGraphAudio> audios) {
+    return new OpenGraphMetadata(type, title, url, description, determiner, locale,
+        alternateLocales, siteName, images, videos, audios);
+  }
+
   /**
    * The type of your object, e.g., "video.movie". Depending on the type you specify, other
    * properties may also be required.
@@ -73,17 +80,16 @@ public abstract class OpenGraphMetadata {
    */
   private final List<OpenGraphAudio> audios;
 
-  protected OpenGraphMetadata(String type, String title, String url, String description,
+  public OpenGraphMetadata(String type, String title, String url, String description,
       String determiner, String locale, List<String> alternateLocales, String siteName,
       List<OpenGraphImage> images, List<OpenGraphVideo> videos, List<OpenGraphAudio> audios) {
     if (type == null)
       throw new IllegalArgumentException("no type");
-    if (title == null)
-      throw new IllegalArgumentException("no title");
-    if (images == null || images.isEmpty())
-      throw new IllegalArgumentException("no image");
-    if (url == null)
-      throw new IllegalArgumentException("no url");
+    
+    // NOTE: The spec requires title. We do not.
+    // NOTE: The spec requires at least one image. We do not.
+    // NOTE: The spec requires a url. We do not.
+    
     this.type = type;
     this.title = title;
     this.url = url;
@@ -97,6 +103,12 @@ public abstract class OpenGraphMetadata {
     this.images = images != null && !images.isEmpty() ? unmodifiableList(images) : emptyList();
     this.videos = videos != null && !videos.isEmpty() ? unmodifiableList(videos) : emptyList();
     this.audios = audios != null && !audios.isEmpty() ? unmodifiableList(audios) : emptyList();
+  }
+
+  protected OpenGraphMetadata(Builder b) {
+    this(b.getType(), b.getTitle(), b.getUrl(), b.getDescription(), b.getDeterminer(),
+        b.getLocale(), b.getAlternateLocales(), b.getSiteName(), b.getImages(), b.getVideos(),
+        b.getAudios());
   }
 
   public String getType() {
@@ -174,11 +186,19 @@ public abstract class OpenGraphMetadata {
         + ", videos=" + videos + ", audios=" + audios + "]";
   }
 
+  public Builder toBuilder() {
+    return new Builder(this);
+  }
+
+  public static Builder builder(String type) {
+    return new Builder(type);
+  }
+
   /**
    * Builder to build {@link OpenGraphMetadata}.
    */
   public static class Builder {
-    private String type;
+    private final String type;
     private String title;
     private String url;
     private String description;
@@ -195,7 +215,7 @@ public abstract class OpenGraphMetadata {
         throw new NullPointerException();
       this.type = type;
     }
-    
+
     protected Builder(OpenGraphMetadata instance) {
       type = instance.type;
       title = instance.title;
@@ -215,13 +235,6 @@ public abstract class OpenGraphMetadata {
      */
     public String getType() {
       return type;
-    }
-
-    /**
-     * @param type the type to set
-     */
-    public void setType(String type) {
-      this.type = type;
     }
 
     /**
@@ -478,6 +491,16 @@ public abstract class OpenGraphMetadata {
     public Builder withAudios(List<OpenGraphAudio> audios) {
       setAudios(audios);
       return this;
+    }
+
+    public OpenGraphMetadata build() {
+      // return new OpenGraphMetadata(this);
+      /*
+       * String type, String title, String url, String description, String determiner, String
+       * locale, List<String> alternateLocales, String siteName, List<OpenGraphImage> images,
+       * List<OpenGraphVideo> videos, List<OpenGraphAudio> audios
+       */
+      return new OpenGraphMetadata(this);
     }
   }
 }
