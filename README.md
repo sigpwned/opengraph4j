@@ -19,7 +19,7 @@ To extract OpenGraph metadata from an HTML page, use:
 opengraph4j uses the excellent [Jsoup](https://jsoup.org/) library to parse HTML. If your
 application uses Jsoup too, then you can use a parsed `Document` instead:
 
-    // Jsoup Document instances are OK, too.
+    // You can extract from an existing Jsoup Document instance, too.
     Optional<OpenGraphMetadata> maybeMetadata=OpenGraph.extract(doc);
     if(maybeMetadata.isPresent()) {
       OpenGraphMetadata metadata=maybeMetadata.get();
