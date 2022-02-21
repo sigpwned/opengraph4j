@@ -16,7 +16,7 @@ To extract OpenGraph metadata from an HTML page, use:
       System.out.println("This contains no OpenGraph metadata.");
     }
 
-The library uses the excellent [Jsoup](https://jsoup.org/) library to parse HTML. If your
+opengraph4j uses the excellent [Jsoup](https://jsoup.org/) library to parse HTML. If your
 application uses Jsoup too, then you can use a parsed `Document` instead:
 
     // Jsoup Document instances are OK, too.
