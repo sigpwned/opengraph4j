@@ -1,4 +1,4 @@
-# OPENGRAPH4J
+# OPENGRAPH4J [![tests](https://github.com/sigpwned/opengraph4j/actions/workflows/tests.yml/badge.svg)](https://github.com/sigpwned/opengraph4j/actions/workflows/tests.yml)
 
 opengraph4j is an implementation of [the OpenGraph standard](https://ogp.me/) for Java.
 
