@@ -2,6 +2,9 @@ package com.sigpwned.opengraph4j;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.net.URI;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -36,7 +39,7 @@ public class OpenGraphExtractor {
 
     OpenGraphMetadata result;
     if (type != null) {
-      builder = OpenGraphMetadata.builder(type);
+      builder = OpenGraphMetadata.builder().withType(type);
 
       Iterator<Element> iterator = metas.iterator();
       while (iterator.hasNext()) {
@@ -96,6 +99,34 @@ public class OpenGraphExtractor {
 
   public static final String OG_IMAGE_HEIGHT_PROPERTY_NAME = "og:image:height";
 
+  public static final String ARTICLE_PUBLISHED_TIME_PROPERTY_NAME = "article:published_time";
+
+  public static final String ARTICLE_MODIFIED_TIME_PROPERTY_NAME = "article:modified_time";
+
+  public static final String ARTICLE_EXPIRATION_TIME_PROPERTY_NAME = "article:expiration_time";
+
+  public static final String ARTICLE_AUTHOR_PROPERTY_NAME = "article:author";
+
+  public static final String ARTICLE_SECTION_PROPERTY_NAME = "article:section";
+
+  public static final String ARTICLE_TAG_PROPERTY_NAME = "article:tag";
+
+  public static final String BOOK_AUTHOR_PROPERTY_NAME = "book:author";
+
+  public static final String BOOK_ISBN_PROPERTY_NAME = "book:isbn";
+
+  public static final String BOOK_RELEASE_DATE_PROPERTY_NAME = "book:release_date";
+
+  public static final String BOOK_TAG_PROPERTY_NAME = "book:tag";
+
+  public static final String PROFILE_FIRST_NAME_PROPERTY_NAME = "profile:first_name";
+
+  public static final String PROFILE_LAST_NAME_PROPERTY_NAME = "profile:last_name";
+
+  public static final String PROFILE_USERNAME_PROPERTY_NAME = "profile:username";
+
+  public static final String PROFILE_GENDER_PROPERTY_NAME = "profile:gender";
+
   private void metadata(String property, String content) {
     switch (property) {
       case OG_TYPE_PROPERTY_NAME:
@@ -133,15 +164,13 @@ public class OpenGraphExtractor {
           try {
             width = new BigDecimal(content).setScale(0, RoundingMode.DOWN).intValueExact();
           } catch (NumberFormatException | ArithmeticException e) {
-            if (LOGGER.isDebugEnabled())
-              LOGGER.debug("Ignoring image {} tag {} due to invalid value {}",
-                  imageBuilder.getUrl(), property, content);
+            LOGGER.debug("Ignoring image {} tag {} due to invalid value {}", imageBuilder.getUrl(),
+                property, content);
             width = null;
           }
           imageBuilder.setWidth(width);
         } else {
-          if (LOGGER.isDebugEnabled())
-            LOGGER.debug("Ignoring tag {} because no image is currently in flight", property);
+          LOGGER.debug("Ignoring tag {} because no image is currently in flight", property);
         }
         break;
       case OG_IMAGE_HEIGHT_PROPERTY_NAME:
@@ -150,15 +179,13 @@ public class OpenGraphExtractor {
           try {
             height = new BigDecimal(content).setScale(0, RoundingMode.DOWN).intValueExact();
           } catch (NumberFormatException | ArithmeticException e) {
-            if (LOGGER.isDebugEnabled())
-              LOGGER.debug("Ignoring image {} tag {} due to invalid value {}",
-                  imageBuilder.getUrl(), property, content);
+            LOGGER.debug("Ignoring image {} tag {} due to invalid value {}", imageBuilder.getUrl(),
+                property, content);
             height = null;
           }
           imageBuilder.setHeight(height);
         } else {
-          if (LOGGER.isDebugEnabled())
-            LOGGER.debug("Ignoring tag {} because no image is currently in flight", property);
+          LOGGER.debug("Ignoring tag {} because no image is currently in flight", property);
         }
         break;
       case OG_VIDEO_PROPERTY_NAME:
@@ -171,8 +198,73 @@ public class OpenGraphExtractor {
           builder.getAudios().add(audioBuilder.build());
         audioBuilder = OpenGraphAudio.builder(content);
         break;
+      case ARTICLE_PUBLISHED_TIME_PROPERTY_NAME:
+        try {
+          builder.setArticlePublishedTime(OffsetDateTime.parse(content));
+        } catch (DateTimeParseException e) {
+          LOGGER.debug("Ignoring tag {} due to invalid value {}", property, content, e);
+        }
+        break;
+      case ARTICLE_MODIFIED_TIME_PROPERTY_NAME:
+        try {
+          builder.setArticleModifiedTime(OffsetDateTime.parse(content));
+        } catch (DateTimeParseException e) {
+          LOGGER.debug("Ignoring tag {} due to invalid value {}", property, content, e);
+        }
+        break;
+      case ARTICLE_EXPIRATION_TIME_PROPERTY_NAME:
+        try {
+          builder.setArticleExpirationTime(OffsetDateTime.parse(content));
+        } catch (DateTimeParseException e) {
+          LOGGER.debug("Ignoring tag {} due to invalid value {}", property, content, e);
+        }
+        break;
+      case ARTICLE_AUTHOR_PROPERTY_NAME:
+        try {
+          builder.getArticleAuthors().add(URI.create(content));
+        } catch (IllegalArgumentException e) {
+          LOGGER.debug("Ignoring tag {} due to invalid value {}", property, content, e);
+        }
+      case ARTICLE_SECTION_PROPERTY_NAME:
+        builder.setArticleSection(content);
+        break;
+      case ARTICLE_TAG_PROPERTY_NAME:
+        builder.getArticleTags().add(content);
+        break;
+      case BOOK_AUTHOR_PROPERTY_NAME:
+        try {
+          builder.getBookAuthors().add(URI.create(content));
+        } catch (IllegalArgumentException e) {
+          LOGGER.debug("Ignoring tag {} due to invalid value {}", property, content, e);
+        }
+        break;
+      case BOOK_ISBN_PROPERTY_NAME:
+        builder.setBookIsbn(content);
+        break;
+      case BOOK_RELEASE_DATE_PROPERTY_NAME:
+        try {
+          builder.setBookReleaseDate(OffsetDateTime.parse(content));
+        } catch (DateTimeParseException e) {
+          LOGGER.debug("Ignoring tag {} due to invalid value {}", property, content, e);
+        }
+        break;
+      case BOOK_TAG_PROPERTY_NAME:
+        builder.getBookTags().add(content);
+        break;
+      case PROFILE_FIRST_NAME_PROPERTY_NAME:
+        builder.setProfileFirstName(content);
+        break;
+      case PROFILE_LAST_NAME_PROPERTY_NAME:
+        builder.setProfileLastName(content);
+        break;
+      case PROFILE_USERNAME_PROPERTY_NAME:
+        builder.setProfileUsername(content);
+        break;
+      case PROFILE_GENDER_PROPERTY_NAME:
+        builder.setProfileGender(content);
+        break;
       default:
-        // We don't handle this.
+        LOGGER.trace("Ignoring tag {} because it is unrecognized", property);
         break;
     }
   }

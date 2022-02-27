@@ -4,6 +4,10 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.NoSuchElementException;
 import org.junit.Test;
@@ -35,7 +39,23 @@ public class OpenGraphExtractorTest {
             630, // height
             null)), // alt
         List.of(), // videos
-        List.of()))); // audios
+        List.of(), // audios
+        OffsetDateTime.of(LocalDate.of(2022, 2, 18), LocalTime.of(22, 54, 34),
+            ZoneOffset.ofHours(-5)), // articlePublishedTime
+        OffsetDateTime.of(LocalDate.of(2022, 2, 18), LocalTime.of(22, 54, 34),
+            ZoneOffset.ofHours(-5)), // articlePublishedTime
+        null, // articleExpirationTime
+        null, // articleAuthors
+        null, // articleSection
+        null, // articleTags
+        null, // bookAuthors
+        null, // bookIsbn
+        null, // bookReleaseDate
+        null, // bookTags
+        null, // profileFirstName
+        null, // profileLastName
+        null, // profileUsername
+        null))); // profileGender
   }
 
   @Test
@@ -61,7 +81,21 @@ public class OpenGraphExtractorTest {
             1480, // height
             null)), // alt
         List.of(), // videos
-        List.of()))); // audios
+        List.of(), // audios
+        null, // articlePublishedTime
+        null, // articleModifiedTime
+        null, // articleExpirationTime
+        null, // articleAuthors
+        null, // articleSection
+        null, // articleTags
+        null, // bookAuthors
+        null, // bookIsbn
+        null, // bookReleaseDate
+        null, // bookTags
+        null, // profileFirstName
+        null, // profileLastName
+        null, // profileUsername
+        null))); // profileGender
   }
 
   @Test(expected = NoSuchElementException.class)
