@@ -3,7 +3,7 @@
 
     <groupId>com.sigpwned</groupId>
     <artifactId>opengraph4j</artifactId>
-    <version>0.0.0-SNAPSHOT</version>
+    <version>0.0.0</version>
     <packaging>jar</packaging>
     <name>opengraph4j</name>
     <description>opengraph4j is an implementation of the OpenGraph standard for Java.</description>
@@ -13,7 +13,8 @@
         <connection>scm:git:git://github.com/sigpwned/opengraph4j.git</connection>
         <developerConnection>scm:git:ssh://github.com/sigpwned/opengraph4j.git</developerConnection>
         <url>https://github.com/sigpwned/opengraph4j/tree/main</url>
-    </scm>
+      <tag>v0.0.0</tag>
+  </scm>
 
     <licenses>
         <license>
