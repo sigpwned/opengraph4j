@@ -11,7 +11,7 @@
 
     <scm>
         <connection>scm:git:git://github.com/sigpwned/opengraph4j.git</connection>
-        <developerConnection>scm:git:ssh://github.com/sigpwned/opengraph4j.git</developerConnection>
+        <developerConnection>scm:git:ssh://git@github.com/sigpwned/opengraph4j.git</developerConnection>
         <url>https://github.com/sigpwned/opengraph4j/tree/main</url>
     </scm>
 
