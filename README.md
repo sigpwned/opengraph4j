@@ -57,7 +57,7 @@ opengraph4j implements the best-documented and most widely-adopted attributes fr
 * `profile:username`
 * `profile:gender`
 
-The spec also includes provisions to allow applications to extend the spec with novel tags, but this seems poorly adopted in progress and opengraph4j does not implement these features.
+The spec also includes provisions to allow applications to extend the spec with novel tags, but these parts of the spec are poorly documented and seem poorly adopted in practice, so opengraph4j does not implement these features.
 
 ## Examples
 
