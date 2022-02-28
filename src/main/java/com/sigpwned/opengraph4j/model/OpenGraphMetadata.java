@@ -2,12 +2,11 @@ package com.sigpwned.opengraph4j.model;
 
 import static java.util.Collections.emptyList;
 import static java.util.Collections.unmodifiableList;
-import java.net.URI;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import javax.annotation.processing.Generated;
+import com.sigpwned.opengraph4j.annotation.Generated;
 import com.sigpwned.opengraph4j.util.Determiners;
 
 /**
@@ -22,8 +21,8 @@ public class OpenGraphMetadata {
       String determiner, String locale, List<String> alternateLocales, String siteName,
       List<OpenGraphImage> images, List<OpenGraphVideo> videos, List<OpenGraphAudio> audios,
       OffsetDateTime articlePublishedTime, OffsetDateTime articleModifiedTime,
-      OffsetDateTime articleExpirationTime, List<URI> articleAuthors, String articleSection,
-      List<String> articleTags, List<URI> bookAuthors, String bookIsbn,
+      OffsetDateTime articleExpirationTime, List<String> articleAuthors, String articleSection,
+      List<String> articleTags, List<String> bookAuthors, String bookIsbn,
       OffsetDateTime bookReleaseDate, List<String> bookTags, String profileFirstName,
       String profileLastName, String profileUsername, String profileGender) {
     return new OpenGraphMetadata(type, title, url, description, determiner, locale,
@@ -113,7 +112,7 @@ public class OpenGraphMetadata {
   /**
    * Writers of the article.
    */
-  private final List<URI> articleAuthors;
+  private final List<String> articleAuthors;
 
   /**
    * A high-level section name. E.g. Technology
@@ -128,7 +127,7 @@ public class OpenGraphMetadata {
   /**
    * Who wrote this book.
    */
-  private final List<URI> bookAuthors;
+  private final List<String> bookAuthors;
 
   /**
    * The ISBN
@@ -198,8 +197,8 @@ public class OpenGraphMetadata {
       String determiner, String locale, List<String> alternateLocales, String siteName,
       List<OpenGraphImage> images, List<OpenGraphVideo> videos, List<OpenGraphAudio> audios,
       OffsetDateTime articlePublishedTime, OffsetDateTime articleModifiedTime,
-      OffsetDateTime articleExpirationTime, List<URI> articleAuthors, String articleSection,
-      List<String> articleTags, List<URI> bookAuthors, String bookIsbn,
+      OffsetDateTime articleExpirationTime, List<String> articleAuthors, String articleSection,
+      List<String> articleTags, List<String> bookAuthors, String bookIsbn,
       OffsetDateTime bookReleaseDate, List<String> bookTags, String profileFirstName,
       String profileLastName, String profileUsername, String profileGender) {
     // NOTE: The spec requires type. We do not.
@@ -336,7 +335,7 @@ public class OpenGraphMetadata {
   /**
    * @return the articleAuthors
    */
-  public List<URI> getArticleAuthors() {
+  public List<String> getArticleAuthors() {
     return articleAuthors;
   }
 
@@ -357,7 +356,7 @@ public class OpenGraphMetadata {
   /**
    * @return the bookAuthors
    */
-  public List<URI> getBookAuthors() {
+  public List<String> getBookAuthors() {
     return bookAuthors;
   }
 
@@ -507,10 +506,10 @@ public class OpenGraphMetadata {
     private OffsetDateTime articlePublishedTime;
     private OffsetDateTime articleModifiedTime;
     private OffsetDateTime articleExpirationTime;
-    private List<URI> articleAuthors = new ArrayList<>();
+    private List<String> articleAuthors = new ArrayList<>();
     private String articleSection;
     private List<String> articleTags = new ArrayList<>();
-    private List<URI> bookAuthors = new ArrayList<>();
+    private List<String> bookAuthors = new ArrayList<>();
     private String bookIsbn;
     private OffsetDateTime bookReleaseDate;
     private List<String> bookTags = new ArrayList<>();
@@ -709,7 +708,7 @@ public class OpenGraphMetadata {
      * @param articleAuthors field to set
      * @return builder
      */
-    public Builder withArticleAuthors(List<URI> articleAuthors) {
+    public Builder withArticleAuthors(List<String> articleAuthors) {
       setArticleAuthors(articleAuthors);
       return this;
     }
@@ -742,7 +741,7 @@ public class OpenGraphMetadata {
      * @param bookAuthors field to set
      * @return builder
      */
-    public Builder withBookAuthors(List<URI> bookAuthors) {
+    public Builder withBookAuthors(List<String> bookAuthors) {
       setBookAuthors(bookAuthors);
       return this;
     }
@@ -1031,14 +1030,14 @@ public class OpenGraphMetadata {
     /**
      * @return the articleAuthors
      */
-    public List<URI> getArticleAuthors() {
+    public List<String> getArticleAuthors() {
       return articleAuthors;
     }
 
     /**
      * @param articleAuthors the articleAuthors to set
      */
-    public void setArticleAuthors(List<URI> articleAuthors) {
+    public void setArticleAuthors(List<String> articleAuthors) {
       if (articleAuthors == null)
         throw new NullPointerException();
       this.articleAuthors = articleAuthors;
@@ -1077,14 +1076,14 @@ public class OpenGraphMetadata {
     /**
      * @return the bookAuthors
      */
-    public List<URI> getBookAuthors() {
+    public List<String> getBookAuthors() {
       return bookAuthors;
     }
 
     /**
      * @param bookAuthors the bookAuthors to set
      */
-    public void setBookAuthors(List<URI> bookAuthors) {
+    public void setBookAuthors(List<String> bookAuthors) {
       if (bookAuthors == null)
         throw new NullPointerException();
       this.bookAuthors = bookAuthors;

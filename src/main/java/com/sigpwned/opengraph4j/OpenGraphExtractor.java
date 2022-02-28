@@ -2,7 +2,6 @@ package com.sigpwned.opengraph4j;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.net.URI;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.Iterator;
@@ -91,13 +90,33 @@ public class OpenGraphExtractor {
 
   public static final String OG_VIDEO_PROPERTY_NAME = "og:video";
 
+  public static final String OG_VIDEO_SECURE_URL_PROPERTY_NAME = "og:video:secure_url";
+
+  public static final String OG_VIDEO_TYPE_PROPERTY_NAME = "og:video:type";
+
+  public static final String OG_VIDEO_WIDTH_PROPERTY_NAME = "og:video:width";
+
+  public static final String OG_VIDEO_HEIGHT_PROPERTY_NAME = "og:video:height";
+
+  public static final String OG_VIDEO_ALT_PROPERTY_NAME = "og:video:alt";
+
   public static final String OG_AUDIO_PROPERTY_NAME = "og:audio";
 
+  public static final String OG_AUDIO_SECURE_URL_PROPERTY_NAME = "og:audio:secure_url";
+
+  public static final String OG_AUDIO_TYPE_PROPERTY_NAME = "og:audio:type";
+
   public static final String OG_IMAGE_PROPERTY_NAME = "og:image";
+
+  public static final String OG_IMAGE_SECURE_URL_PROPERTY_NAME = "og:image:secure_url";
+
+  public static final String OG_IMAGE_TYPE_PROPERTY_NAME = "og:image:type";
 
   public static final String OG_IMAGE_WIDTH_PROPERTY_NAME = "og:image:width";
 
   public static final String OG_IMAGE_HEIGHT_PROPERTY_NAME = "og:image:height";
+
+  public static final String OG_IMAGE_ALT_PROPERTY_NAME = "og:image:alt";
 
   public static final String ARTICLE_PUBLISHED_TIME_PROPERTY_NAME = "article:published_time";
 
@@ -158,6 +177,20 @@ public class OpenGraphExtractor {
           builder.getImages().add(imageBuilder.build());
         imageBuilder = OpenGraphImage.builder(content);
         break;
+      case OG_IMAGE_SECURE_URL_PROPERTY_NAME:
+        if (imageBuilder != null) {
+          imageBuilder.setSecureUrl(content);
+        } else {
+          LOGGER.debug("Ignoring tag {} because no image is currently in flight", property);
+        }
+        break;
+      case OG_IMAGE_TYPE_PROPERTY_NAME:
+        if (imageBuilder != null) {
+          imageBuilder.setType(content);
+        } else {
+          LOGGER.debug("Ignoring tag {} because no image is currently in flight", property);
+        }
+        break;
       case OG_IMAGE_WIDTH_PROPERTY_NAME:
         if (imageBuilder != null) {
           Integer width;
@@ -188,15 +221,87 @@ public class OpenGraphExtractor {
           LOGGER.debug("Ignoring tag {} because no image is currently in flight", property);
         }
         break;
+      case OG_IMAGE_ALT_PROPERTY_NAME:
+        if (imageBuilder != null) {
+          imageBuilder.setAlt(content);
+        } else {
+          LOGGER.debug("Ignoring tag {} because no image is currently in flight", property);
+        }
+        break;
       case OG_VIDEO_PROPERTY_NAME:
         if (videoBuilder != null)
           builder.getVideos().add(videoBuilder.build());
         videoBuilder = OpenGraphVideo.builder(content);
         break;
+      case OG_VIDEO_SECURE_URL_PROPERTY_NAME:
+        if (videoBuilder != null) {
+          videoBuilder.setSecureUrl(content);
+        } else {
+          LOGGER.debug("Ignoring tag {} because no video is currently in flight", property);
+        }
+        break;
+      case OG_VIDEO_TYPE_PROPERTY_NAME:
+        if (videoBuilder != null) {
+          videoBuilder.setType(content);
+        } else {
+          LOGGER.debug("Ignoring tag {} because no video is currently in flight", property);
+        }
+        break;
+      case OG_VIDEO_WIDTH_PROPERTY_NAME:
+        if (videoBuilder != null) {
+          Integer width;
+          try {
+            width = new BigDecimal(content).setScale(0, RoundingMode.DOWN).intValueExact();
+          } catch (NumberFormatException | ArithmeticException e) {
+            LOGGER.debug("Ignoring video {} tag {} due to invalid value {}", videoBuilder.getUrl(),
+                property, content);
+            width = null;
+          }
+          videoBuilder.setWidth(width);
+        } else {
+          LOGGER.debug("Ignoring tag {} because no video is currently in flight", property);
+        }
+        break;
+      case OG_VIDEO_HEIGHT_PROPERTY_NAME:
+        if (videoBuilder != null) {
+          Integer height;
+          try {
+            height = new BigDecimal(content).setScale(0, RoundingMode.DOWN).intValueExact();
+          } catch (NumberFormatException | ArithmeticException e) {
+            LOGGER.debug("Ignoring video {} tag {} due to invalid value {}", videoBuilder.getUrl(),
+                property, content);
+            height = null;
+          }
+          videoBuilder.setHeight(height);
+        } else {
+          LOGGER.debug("Ignoring tag {} because no video is currently in flight", property);
+        }
+        break;
+      case OG_VIDEO_ALT_PROPERTY_NAME:
+        if (videoBuilder != null) {
+          videoBuilder.setAlt(content);
+        } else {
+          LOGGER.debug("Ignoring tag {} because no video is currently in flight", property);
+        }
+        break;
       case OG_AUDIO_PROPERTY_NAME:
         if (audioBuilder != null)
           builder.getAudios().add(audioBuilder.build());
         audioBuilder = OpenGraphAudio.builder(content);
+        break;
+      case OG_AUDIO_SECURE_URL_PROPERTY_NAME:
+        if (audioBuilder != null) {
+          audioBuilder.setSecureUrl(content);
+        } else {
+          LOGGER.debug("Ignoring tag {} because no audio is currently in flight", property);
+        }
+        break;
+      case OG_AUDIO_TYPE_PROPERTY_NAME:
+        if (audioBuilder != null) {
+          audioBuilder.setType(content);
+        } else {
+          LOGGER.debug("Ignoring tag {} because no audio is currently in flight", property);
+        }
         break;
       case ARTICLE_PUBLISHED_TIME_PROPERTY_NAME:
         try {
@@ -220,11 +325,8 @@ public class OpenGraphExtractor {
         }
         break;
       case ARTICLE_AUTHOR_PROPERTY_NAME:
-        try {
-          builder.getArticleAuthors().add(URI.create(content));
-        } catch (IllegalArgumentException e) {
-          LOGGER.debug("Ignoring tag {} due to invalid value {}", property, content, e);
-        }
+        builder.getArticleAuthors().add(content);
+        break;
       case ARTICLE_SECTION_PROPERTY_NAME:
         builder.setArticleSection(content);
         break;
@@ -232,11 +334,7 @@ public class OpenGraphExtractor {
         builder.getArticleTags().add(content);
         break;
       case BOOK_AUTHOR_PROPERTY_NAME:
-        try {
-          builder.getBookAuthors().add(URI.create(content));
-        } catch (IllegalArgumentException e) {
-          LOGGER.debug("Ignoring tag {} due to invalid value {}", property, content, e);
-        }
+        builder.getBookAuthors().add(content);
         break;
       case BOOK_ISBN_PROPERTY_NAME:
         builder.setBookIsbn(content);

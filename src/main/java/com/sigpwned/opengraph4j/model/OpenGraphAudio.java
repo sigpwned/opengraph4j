@@ -2,7 +2,7 @@ package com.sigpwned.opengraph4j.model;
 
 import java.util.Objects;
 import java.util.Optional;
-import javax.annotation.processing.Generated;
+import com.sigpwned.opengraph4j.annotation.Generated;
 
 /**
  * An audio clip associated with an OpenGraph entity

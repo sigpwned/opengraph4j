@@ -3,7 +3,7 @@ package com.sigpwned.opengraph4j.model;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalInt;
-import javax.annotation.processing.Generated;
+import com.sigpwned.opengraph4j.annotation.Generated;
 
 /**
  * An image associated with an OpenGraph entity
