@@ -3,7 +3,7 @@ package com.sigpwned.opengraph4j.util;
 /**
  * Determiners enum values
  * 
- * @see https://ogp.me/#aidoptionalhrefoptionaloptionalmetadataa
+ * @see <a href="https://ogp.me/#aidoptionalhrefoptionaloptionalmetadataa">https://ogp.me/#aidoptionalhrefoptionaloptionalmetadataa</a>
  */
 public final class Determiners {
   private Determiners() {}

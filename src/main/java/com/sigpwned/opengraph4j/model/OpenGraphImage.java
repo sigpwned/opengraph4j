@@ -8,7 +8,7 @@ import com.sigpwned.opengraph4j.annotation.Generated;
 /**
  * An image associated with an OpenGraph entity
  * 
- * @see https://ogp.me/#aidstructuredhrefstructuredstructuredpropertiesa
+ * @see <a href="https://ogp.me/#aidstructuredhrefstructuredstructuredpropertiesa">https://ogp.me/#aidstructuredhrefstructuredstructuredpropertiesa</a>
  */
 public class OpenGraphImage {
   public static OpenGraphImage of(String url, String secureUrl, String type, Integer width,

@@ -14,7 +14,7 @@ import com.sigpwned.opengraph4j.util.Determiners;
  * model all OpenGraph metadata types. While these "main" metadata are reasonably well-documented
  * and ubiquitous across the web, the more complex types are not in practice.
  * 
- * @see https://ogp.me/
+ * @see <a href="https://ogp.me/">https://ogp.me/</a>
  */
 public class OpenGraphMetadata {
   public static OpenGraphMetadata of(String type, String title, String url, String description,
@@ -479,7 +479,6 @@ public class OpenGraphMetadata {
   /**
    * Creates a builder to build {@link OpenGraphMetadata} and initialize it with the given object.
    * 
-   * @param openGraphMetadata to initialize the builder with
    * @return created builder
    */
   @Generated("SparkTools")

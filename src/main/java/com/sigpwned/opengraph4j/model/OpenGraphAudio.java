@@ -7,7 +7,7 @@ import com.sigpwned.opengraph4j.annotation.Generated;
 /**
  * An audio clip associated with an OpenGraph entity
  * 
- * @see https://ogp.me/#aidstructuredhrefstructuredstructuredpropertiesa
+ * @see <a href="https://ogp.me/#aidstructuredhrefstructuredstructuredpropertiesa">https://ogp.me/#aidstructuredhrefstructuredstructuredpropertiesa</a>
  */
 public class OpenGraphAudio {
   public static OpenGraphAudio of(String url, String secureUrl, String type) {
