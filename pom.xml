@@ -59,7 +59,7 @@
         <slf4j.version>1.7.36</slf4j.version>
         <jsoup.version>1.14.3</jsoup.version>
         <junit.version>4.13.2</junit.version>
-        <guava.version>31.0.1-jre</guava.version>
+        <guava.version>31.1-jre</guava.version>
     </properties>
 
     <dependencies>
