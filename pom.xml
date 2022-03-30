@@ -6,15 +6,21 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>opengraph4j</name>
+    <inceptionYear>2022</inceptionYear>
     <description>opengraph4j is an implementation of the OpenGraph standard for Java.</description>
     <url>https://github.com/sigpwned/opengraph4j</url>
+
+    <organization>
+        <name>Andy Boothe</name>
+        <url>https://www.sigpwned.com/</url>
+    </organization>
 
     <scm>
         <connection>scm:git:ssh://git@github.com/sigpwned/opengraph4j.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/sigpwned/opengraph4j.git</developerConnection>
         <url>https://github.com/sigpwned/opengraph4j/tree/main</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <licenses>
         <license>
@@ -47,6 +53,39 @@
         <system>GitHub</system>
         <url>https://github.com/sigpwned/opengraph4j</url>
     </issueManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>2.0.0</version>
+                <configuration>
+                    <verbose>false</verbose>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>update-file-header</id>
+                        <goals>
+                            <goal>update-file-header</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                        <configuration>
+                            <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
+                            <processStartTag>=================================LICENSE_START==================================</processStartTag>
+                            <processEndTag>==================================LICENSE_END===================================</processEndTag>
+                            <sectionDelimiter>====================================SECTION=====================================</sectionDelimiter>
+                            <licenseName>apache_v2</licenseName>
+                            <roots>
+                                <root>src/main/java</root>
+                                <root>src/test/java</root>
+                            </roots>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -94,6 +133,7 @@
         </dependency>
     </dependencies>
 
+    <!-- For releasing to maven central -->
     <profiles>
         <profile>
             <id>release</id>
