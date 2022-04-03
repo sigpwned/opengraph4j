@@ -1,7 +1,7 @@
 # OPENGRAPH4J [![tests](https://github.com/sigpwned/opengraph4j/actions/workflows/tests.yml/badge.svg)](https://github.com/sigpwned/opengraph4j/actions/workflows/tests.yml) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=sigpwned_opengraph4j&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=sigpwned_opengraph4j) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=sigpwned_opengraph4j&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=sigpwned_opengraph4j) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=sigpwned_opengraph4j&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=sigpwned_opengraph4j) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.sigpwned/opengraph4j/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.sigpwned/opengraph4j)
 
 
-opengraph4j is an implementation of [the OpenGraph standard](https://ogp.me/) for Java.
+opengraph4j is an implementation of [the OpenGraph standard](https://ogp.me/) for Java 8+.
 
 ## Goals
 
