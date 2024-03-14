@@ -98,7 +98,7 @@
         <slf4j.version>2.0.10</slf4j.version>
         <jsoup.version>1.17.2</jsoup.version>
         <junit.version>4.13.2</junit.version>
-        <guava.version>33.0.0-jre</guava.version>
+        <guava.version>33.1.0-jre</guava.version>
     </properties>
 
     <dependencies>
